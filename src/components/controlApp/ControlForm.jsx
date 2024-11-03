@@ -8,7 +8,7 @@ import InfoBeneficiario from "@/components/siac/form/infoBeneficiario";
 import InfoDireccion from "@/components/siac/form/InfoDireccion";
 import InfoAtencion from "@/components/siac/form/InfoAtencion";
 
-const ControlForm = () => {
+const ControlForm = ({insertStepApp}) => {
     const [step, insertStep] = useState(1)
     const [visited, setVisited] = useState(false)
     //estado para controlar las etapas del formulario de registro (existen 3 etapas)
@@ -21,7 +21,7 @@ const ControlForm = () => {
         "nacionalidad":"V",
         "idusuopr":19,
         "edad":"",
-        "fecha-nacimiento":"",
+        "fecha_nacimiento":"",
         "profesion":"",
         "sexo":0,
         "tipo-atencion-usu":0,
@@ -50,7 +50,7 @@ const ControlForm = () => {
         //funcion para filtrar los componentes que se van a renderizar (el primer parametro, es un objeto con los componentes, la key del objeto de el componente debe ser igual al valor por el cual se le va a filtrar)
         return filterComponents(
             {
-                1: <InfoBeneficiario insertState ={setStateBef} stateBef={stateBef} {...rest}/>,
+                1: <InfoBeneficiario insertState ={setStateBef} stateBef={stateBef} {...rest} insertStepApp={insertStepApp}/>,
                 2: <InfoDireccion insertState={setStateDir} stateDir={stateDir} {...rest}/>,
                 3: <InfoAtencion insertState={setStateAte} insertStateDir={setStateDir} insertStateBef={setStateBef} stateDir={stateDir} stateAte={stateAte} stateBef={stateBef} {...rest}/>
             }, step)     
@@ -67,14 +67,16 @@ const ControlForm = () => {
                     <Steps 
                         number={3} 
                         numberActive={step} 
-                        insertStep={insertStep} 
+                        numeroStep={step}
+                        numberStep={insertStep}
+                        stepNumero={insertStep}
                         key={step} 
                         titles={{title1:'Datos Beneficiario',title2:'Dirección',title3:'Atención'}}
                     />
                 </div>
             </div>
             <div className="column is-9">
-                    <Render insertStep={insertStep}/>
+                    <Render insertStep={insertStep} insertStepApp={insertStepApp}/>
             </div>
         </div>
     )

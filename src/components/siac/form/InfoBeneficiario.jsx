@@ -8,7 +8,7 @@ import { validateNumber } from "@/lib/helpers/validate/validateNumber";
 import { aloneLetter } from "@/lib/helpers/validate/validateForm";
 
 
-const InfoBeneficiario = ({insertStep, insertState, stateBef}) =>{
+const InfoBeneficiario = ({insertStep, insertState, stateBef, insertStepApp}) =>{
 
     //obtenemos la variable de mensaje que traemos de la instancia App
     const {message} = App.useApp();
@@ -22,7 +22,7 @@ const InfoBeneficiario = ({insertStep, insertState, stateBef}) =>{
         "nacionalidad":"V",
         "idusuopr":19,
         "edad":"",
-        "fecha-nacimiento":"",
+        "fecha_nacimiento":"",
         "profesion":"",
         "sexo":0,
         "tipo-atencion-usu":0,
@@ -160,7 +160,7 @@ const InfoBeneficiario = ({insertStep, insertState, stateBef}) =>{
                                         <span className="select" name="id_tipo_atencion">
                                         <select name="tipo-atencion-usu" required value={info["tipo-atencion-usu"]}onChange={(e)=>{
                                             const banderaDe =  e.target.value==5? true:null
-                                            
+                                            e.target.value==7?insertStepApp(2):null
                                             setInfo({
                                                 ...info,
                                                 [e.target.name]:e.target.value,
@@ -173,6 +173,7 @@ const InfoBeneficiario = ({insertStep, insertState, stateBef}) =>{
                                             <option value="4">Reclamo</option>
                                             <option value="5">Denuncia</option>
                                             <option value="6">Petición</option>
+                                            <option value="7">Audiencia</option>
                                         </select>
                                         </span>
                                     </p>
@@ -213,10 +214,10 @@ const InfoBeneficiario = ({insertStep, insertState, stateBef}) =>{
                         <div className="column is-4">
                                 <label className="label">Fecha de Nacimiento</label>
                                 <div className="control has-icons-right pb-4 mb-2">
-                                    <input className="input" type="date" placeholder="Fecha de Nacimiento" required value={info["fecha-nacimiento"]} name="fecha-nacimiento"  onChange={(e)=>(
+                                    <input className="input" type="date" placeholder="Fecha de Nacimiento" required value={info["fecha_nacimiento"]} name="fecha_nacimiento"  onChange={(e)=>(
                                     setInfo({
                                         ...info,
-                                        [e.target.name]:e.target.value
+                                        ['fecha_nacimiento']:e.target.value
                                     })
                                 )} />
                                     <span className="icon is-small is-right">

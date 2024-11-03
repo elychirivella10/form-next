@@ -18,7 +18,7 @@ const Buscar =({state, setState})=>{
 
     const [inde, setInde] = useState(0)
     const search = (e) =>{
-        axios.get(`http://localhost:80/public/Informacion_Usu/27038431`)
+        axios.get(`${rutaAxios}usu/${inde}`)
         .then(respuesta=>{
             const data = respuesta.data
             if (respuesta.data.length>0) {

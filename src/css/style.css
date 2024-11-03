@@ -31132,3 +31132,16 @@ a.has-text-orange:hover, a.has-text-orange:focus {
 .box > .leaflet-container, .vh60 > .leaflet-container {
   border-radius: 8px;
 }
+
+.has-background-success-market{
+  background: hsl(135.69deg 100% 36%) !important;
+}
+
+.site-result-demo-error-icon{
+  color: hsl(135.69deg 100% 36%) !important;
+}
+
+.ant-badge.ant-badge-status .ant-badge-status-dot{
+  width: 7px !important;
+  height: 7px !important;
+}
