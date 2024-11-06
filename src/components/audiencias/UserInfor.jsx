@@ -116,9 +116,7 @@ const UserInfo = ({insertRegister, register, insertStep}) => {
 
                     <div className="column is-12">
                             <button className = "button is-fullwidth is-blue" onClick={(e)=>{
-
                                 if (validarEmpty(info)) {
-                                    
                                     insertStep(2)
                                     insertRegister({
                                         ...info

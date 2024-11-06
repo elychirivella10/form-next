@@ -63,7 +63,7 @@ const BufeteInfo = ({insertBufetes, bufetes, insertStep}) =>{
                 </div>
                 <div className="columns is-centered is-multiline">
                     <div className="column is-6">
-                        <label className="label">Nombre</label>
+                        <label className="label">Nombre Bufete</label>
                         <div className="control has-icons-right pb-4 is-expanded">
                             <input className="input" type="text" placeholder="Nombre" name="nombre_bufete" value={info.nombre_bufete} onChange={handleText}/>
                         </div>
@@ -117,7 +117,7 @@ const BufeteInfo = ({insertBufetes, bufetes, insertStep}) =>{
                                 ...info
                             })
                         }}
-                        >{info.rif === "" || info.rif === null || info.nombre_bufete === "" || info.correo === "" || info.telefono === "" ?'Omitir':"Siguiente"}</button>
+                        >{info.rif === "" || info.rif === null || info.nombre_bufete === "" || info.correo === "" || info.telefono === null ?'Omitir':"Siguiente"}</button>
                     </div>
                 </div>
             </div>

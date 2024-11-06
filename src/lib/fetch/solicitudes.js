@@ -28,11 +28,12 @@ export async function obtenerSoli(id_area, setSolicitud, solicitud, message) {
 
 
   export const insertarSolicitud = async (requests, id) => {
+    const vals = requests
     try {
       // Update each request's id_requerimiento directly within the loop for efficiency
-      requests.forEach(request => (request.id_requerimiento = id));
+      vals.forEach(val => {val.id_requerimiento = id; delete val.nombre});
   
-      const response = await axios.post(`${rutaAxios2}solicitudes`, requests);
+      const response = await axios.post(`${rutaAxios2}solicitudes`, vals);
   
       if (response.data.id_solicitudes) {
         return true; // Explicitly return success for better control flow

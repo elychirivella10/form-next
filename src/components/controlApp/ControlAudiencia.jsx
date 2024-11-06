@@ -12,6 +12,8 @@ import { insertarAudiencia } from "@/lib/fetch/audiencia";
 import { insertarBufete, insertBufetesAudiencias } from "@/lib/fetch/bufete";
 import { insertarSolicitud } from "@/lib/fetch/solicitudes";
 import Resultado from "../audiencias/Resultado";
+import Modal from '@/components/general/modal/Modal';
+import Warning from "../audiencias/warning/Warning";
 
 const ControlAudiencia = ({insertStepApp}) =>{
     const [step, insertStep] = useState(1)
@@ -92,6 +94,9 @@ const ControlAudiencia = ({insertStepApp}) =>{
     }
     return(
         <div className="columns is-centered is-multiline mt-5">
+            <Modal show={true}>
+                <Warning/>
+            </Modal>
         <div className="column is-9 mt-4">
             <Panel title='SAPI' subtitle={`Audiencia`}/>
         </div>
@@ -105,7 +110,7 @@ const ControlAudiencia = ({insertStepApp}) =>{
                         numberStep={insertStep}
                         stepNumero={insertStep}
                         key={step} 
-                        titles={{title1:'Datos Beneficiario',title2:'Información Bufete',title3:'Información Audiencia', title4:'Solicitudes'}}
+                        titles={{title1:'Datos del Usuario',title2:'Información Bufete',title3:'Información Audiencia', title4:'Solicitudes'}}
                     />
                 </div>
             </div>

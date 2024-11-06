@@ -41,13 +41,13 @@ const SolicitudesInfo = ({insertSolicitudes, solicitudes, insertStep, audiencia,
     const items = [
         {
           key: '1',
-          label: 'Nombre de la Marca',
+          label: 'Nombre Solicitud',
           children: sipi.nombre!==""?sipi.nombre:"N/A",
         },
         {
           key: '2',
           label: 'Nombre Titular',
-          children: sipi.titulares?sipi.titulares.nombre:'N/A',
+          children: sipi.titulares?sipi.titulares[0].nombre:'N/A',
         },
         {
             key: '3',
@@ -73,7 +73,8 @@ const SolicitudesInfo = ({insertSolicitudes, solicitudes, insertStep, audiencia,
                 {
                     ...state,
                     ['num_solicitud']:solicitud.ano+solicitud.sol,
-                    ['num_registro']:sipi.registro
+                    ['num_registro']:sipi.registro,
+                    ['nombre']:sipi.nombre
                 }
             ])
     
@@ -87,6 +88,10 @@ const SolicitudesInfo = ({insertSolicitudes, solicitudes, insertStep, audiencia,
 
 
     const columns = [
+        {
+        title:'Nombre Solicitud',
+        dataIndex:'nombre'
+        },
         {
         title:'Numero de registro',
         dataIndex:'num_registro'
@@ -162,7 +167,7 @@ const SolicitudesInfo = ({insertSolicitudes, solicitudes, insertStep, audiencia,
                         </figure>
                     </div>
                     <div className="column is-12">
-                        <Descriptions title="Información de la marca" layout="vertical" items={items} />
+                        <Descriptions title="Información Solicitud" layout="vertical" items={items} />
                     </div>
                     <div className="column is-12">
                         <div className="field">
@@ -199,7 +204,7 @@ const SolicitudesInfo = ({insertSolicitudes, solicitudes, insertStep, audiencia,
                         </div>
                     </div>
                     <div className="column is-12">
-                        <button className="button is-primary is-fullwidth" onClick={insertRequest}>Agregar Caso</button>
+                        <button className="button is-primary is-fullwidth" onClick={insertRequest}>Agregar Solicitud</button>
                     </div>
                 </div>
             </div>
@@ -209,7 +214,7 @@ const SolicitudesInfo = ({insertSolicitudes, solicitudes, insertStep, audiencia,
                         <TableComp  data={solicitudes} columns={columns}/>
                     </div>
                     <div className="column is-12">
-                        <button className="button is-primary is-fullwidth" onClick={insertAudienciaWeb}>Agregar Caso</button>
+                        <button className="button is-primary is-fullwidth" onClick={insertAudienciaWeb}>Registrar Audiencia</button>
                     </div>
                 </div>
             </div>
