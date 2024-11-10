@@ -2,6 +2,7 @@ import {useState} from 'react'
 import { validateNumber } from "@/lib/helpers/validate/validateNumber";
 import { aloneLetter } from "@/lib/helpers/validate/validateForm";
 import { validarEmpty } from "@/lib/helpers/validate/validateEmpty";
+import {validarEmail} from "@/lib/helpers/validate/validateEmail";
 //Instancia de app de antd, para usar componentes si colocar manualmente la configuracion
 import { App, Badge } from 'antd';
 
@@ -116,11 +117,14 @@ const UserInfo = ({insertRegister, register, insertStep}) => {
 
                     <div className="column is-12">
                             <button className = "button is-fullwidth is-blue" onClick={(e)=>{
+                            e.preventDefault()
                                 if (validarEmpty(info)) {
-                                    insertStep(2)
-                                    insertRegister({
-                                        ...info
-                                    })
+                                    if (validarEmail(info.correo_contacto, message) && validateNumber(info.identificacion_contacto, 8, message, 6, "Identificación") && validateNumber(info.telefono_contacto, 11, message, 11, "Teléfono")) {
+                                        insertStep(2)
+                                        insertRegister({
+                                            ...info
+                                        })
+                                    }
                                 }else{
                                     message.error('Por favor, rellene los campos obligatorios')
                                 }

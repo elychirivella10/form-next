@@ -7339,7 +7339,7 @@ a.navbar-item,
 }
 .steps .step-item.is-active .step-marker {
   background-color: hsl(0, 0%, 100%);
-  border-color: hsl(212, 100%, 36%);
+  /* border-color: hsl(212, 100%, 36%); */
   color: hsl(212, 100%, 36%);
 }
 .steps .step-item.is-completed::before {
@@ -7464,7 +7464,7 @@ a.navbar-item,
 }
 .steps .step-item.is-primary.is-active .step-marker {
   background-color: hsl(0, 0%, 100%);
-  border-color: hsl(212, 100%, 36%);
+  /* border-color: hsl(212, 100%, 36%); */
   color: hsl(212, 100%, 36%);
 }
 .steps .step-item.is-primary.is-completed::before {
@@ -7506,7 +7506,7 @@ a.navbar-item,
 }
 .steps .step-item.is-info.is-active .step-marker {
   background-color: hsl(0, 0%, 100%);
-  border-color: hsl(212, 100%, 36%);
+  /* border-color: hsl(212, 100%, 36%); */
   color: hsl(212, 100%, 36%);
 }
 .steps .step-item.is-info.is-completed::before {
@@ -7590,7 +7590,7 @@ a.navbar-item,
 }
 .steps .step-item.is-blue.is-active .step-marker {
   background-color: hsl(0, 0%, 100%);
-  border-color: hsl(212, 100%, 36%);
+  /* border-color: hsl(212, 100%, 36%); */
   color: hsl(212, 100%, 36%);
 }
 .steps .step-item.is-blue.is-completed::before {

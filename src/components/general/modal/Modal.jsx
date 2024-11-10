@@ -12,9 +12,14 @@ const Modal = ({show, children}) => {
         setIsModalOpen(false);
       };
     return (
-        <AntModal open={isModalOpen} onOk={handleOk}>
+      <div class={`modal ${isModalOpen?'is-active':''}`} >
+        <div class="modal-background"></div>
+          <div class="modal-content">
             {children}
-        </AntModal>
+
+          </div>
+        <button class="modal-close is-large" aria-label="close" onClick={handleCancel}></button>
+      </div>
     )
 }
 

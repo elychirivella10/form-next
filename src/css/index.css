@@ -169,6 +169,10 @@ input.input{
     font-weight: 700;
 }
 
+.image-modal{
+  width: 64% !important;
+}
+
 
 
 .after-dash-blue::after{

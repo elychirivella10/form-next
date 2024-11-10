@@ -51,7 +51,7 @@ const SolicitudesInfo = ({insertSolicitudes, solicitudes, insertStep, audiencia,
         },
         {
             key: '3',
-            label: 'Numero Poder',
+            label: 'Número Poder',
             children: sipi.poder!==""?sipi.poder:'N/A',
         }
     ];
@@ -74,7 +74,8 @@ const SolicitudesInfo = ({insertSolicitudes, solicitudes, insertStep, audiencia,
                     ...state,
                     ['num_solicitud']:solicitud.ano+solicitud.sol,
                     ['num_registro']:sipi.registro,
-                    ['nombre']:sipi.nombre
+                    ['nombre']:sipi.nombre,
+                    ['modalidad']:sipi.modalidad
                 }
             ])
     
@@ -89,15 +90,23 @@ const SolicitudesInfo = ({insertSolicitudes, solicitudes, insertStep, audiencia,
 
     const columns = [
         {
-        title:'Nombre Solicitud',
+        title: function(){
+            return 'Nombre '+(audiencia.id_area ==1?'Marcas':'Patentes'); //AQUI THIS.AGE GUARDAMOS EL RESULTADO DEL 2020-THIS.BIRTHDAY
+        },
         dataIndex:'nombre'
         },
         {
-        title:'Numero de registro',
+        title: function(){
+            return 'Tipo '+(audiencia.id_area ==1?'Marcas':'Patentes'); //AQUI THIS.AGE GUARDAMOS EL RESULTADO DEL 2020-THIS.BIRTHDAY
+        },
+        dataIndex:'modalidad'
+        },
+        {
+        title:'Número de registro',
         dataIndex:'num_registro'
         },
         {
-        title:'Numero de solicitud',
+        title:'Número de solicitud',
         dataIndex:'num_solicitud'
         },
         {
@@ -124,9 +133,9 @@ const SolicitudesInfo = ({insertSolicitudes, solicitudes, insertStep, audiencia,
         }}>
             <div className="box animate__animated animate__fadeInRight animate__faster">
                 <div className="columns is-centered is-multiline">
-                    <div className="column is-10"> 
+                    <div className="column is-12"> 
                         <div className="field mb-3">
-                            <label className="label">Numero Solicitud <span className='ml-1'><Badge status="error" size='small' /></span></label>
+                            <label className="label">Número Solicitud <span className='ml-1'><Badge status="error" size='small' /></span></label>
                             <div className="field-body">
                                 <div className="field has-addons" >
                                     <div className="control">
@@ -156,15 +165,6 @@ const SolicitudesInfo = ({insertSolicitudes, solicitudes, insertStep, audiencia,
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="column is-2">
-                        <figure className="image is-96x96">
-                        {
-                            sipi.solicitud?
-                                <img src={`http://172.16.0.30/graficos/${audiencia.id_area==1?'marcas':'patentes'}/${audiencia.id_area==1?'ef':'di'}${solicitud.ano}/${solicitud.ano+solicitud.sol}.jpg`} alt=""/>
-                            :null  
-                        } 
-                        </figure>
                     </div>
                     <div className="column is-12">
                         <Descriptions title="Información Solicitud" layout="vertical" items={items} />
@@ -214,7 +214,7 @@ const SolicitudesInfo = ({insertSolicitudes, solicitudes, insertStep, audiencia,
                         <TableComp  data={solicitudes} columns={columns}/>
                     </div>
                     <div className="column is-12">
-                        <button className="button is-primary is-fullwidth" onClick={insertAudienciaWeb}>Registrar Audiencia</button>
+                        <button className="button is-primary is-fullwidth" onClick={insertAudienciaWeb}>Registrar Solicitud de Audiencia</button>
                     </div>
                 </div>
             </div>

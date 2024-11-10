@@ -34,7 +34,7 @@ const Buscar =({state, setState})=>{
                 })
                 alerta.open({type:"success", message:'Datos cargados correctamente'})
             }else{
-                alerta.open({type:"warning", message:'No se han encontrado datos con el numero de identificación'})
+                alerta.open({type:"warning", message:'No se han encontrado datos con el número de identificación'})
             }
 
         })

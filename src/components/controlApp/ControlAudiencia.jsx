@@ -14,6 +14,7 @@ import { insertarSolicitud } from "@/lib/fetch/solicitudes";
 import Resultado from "../audiencias/Resultado";
 import Modal from '@/components/general/modal/Modal';
 import Warning from "../audiencias/warning/Warning";
+import { setCorreo } from "@/lib/fetch/correo";
 
 const ControlAudiencia = ({insertStepApp}) =>{
     const [step, insertStep] = useState(1)
@@ -56,8 +57,12 @@ const ControlAudiencia = ({insertStepApp}) =>{
             }, step)     
     }
 
-    const insertAudienciaWeb = async () => {
-        if (validarEmpty(register) && validarEmpty(audiencia) && solicitudes.length > 0) {
+    const insertAudienciaWeb = () => {
+        let exceptiones = []
+        if (audiencia.id_pais !== "95") {
+            exceptiones= ["id_estado_pais","id_municipio", "id_parroquia"]
+        }
+        if (validarEmpty(register) && validarEmpty(audiencia, [...exceptiones]) && solicitudes.length > 0) {
             Promise.all([
                 insertarAudiencia(audiencia, register),
                 insertarBufete(bufetes)
@@ -66,6 +71,7 @@ const ControlAudiencia = ({insertStepApp}) =>{
                 if (res[0] && res[1]) {
                     insertIdAudiencia(res[0].requerimientos_id)
                     return Promise.all([
+                        res[0].requerimientos_id,
                         insertarSolicitud(solicitudes, res[0].requerimientos_id),
                         insertBufetesAudiencias(res[1].id, res[0].requerimientos_id)
                     ]);
@@ -73,6 +79,7 @@ const ControlAudiencia = ({insertStepApp}) =>{
             })
             .then(res => {
                 if (res[0] && res[1]) {
+                    setCorreo(res[0])
                     insertStep(5)
                 } else {
                     console.error('Error al insertar solicitudes o bufetes-audiencias');
@@ -94,8 +101,10 @@ const ControlAudiencia = ({insertStepApp}) =>{
     }
     return(
         <div className="columns is-centered is-multiline mt-5">
-            <Modal show={true}>
-                <Warning/>
+            <Modal show={true}> 
+                <p class="image is-flex is-vertical-align-center is-justify-content-center	">
+                    <img src="aviso.png" class="image-modal" alt="aviso"/>
+                </p>
             </Modal>
         <div className="column is-9 mt-4">
             <Panel title='SAPI' subtitle={`Audiencia`}/>

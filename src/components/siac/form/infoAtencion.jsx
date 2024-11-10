@@ -114,7 +114,7 @@ const InfoAtencion=({insertStep, insertState, stateDir, stateBef, insertStateDir
           }).then(respuesta=>{
                 const data =JSON.parse(respuesta)
                 if (data.idcaso) {
-                    axios.get(`${rutaAxios}correos/${data.idcaso}`)
+                    axios.get(`${rutaAxios}correos/${data.idcaso}/1`)
                     insertStateDir({
                         "direccion":"No aplica",
                         "state":0,

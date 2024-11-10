@@ -42,6 +42,6 @@ export async function obtenerSoli(id_area, setSolicitud, solicitud, message) {
       }
     } catch (error) {
         message.error(error.response.data.error.message, 1)
-      return false; // Explicitly return failure for better control flow
+        return false;
     }
   };

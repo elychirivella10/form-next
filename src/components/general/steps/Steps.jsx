@@ -1,8 +1,8 @@
 'use client'
-export const Step=({type, number, insertStep, title, stepNumero, color})=>{
+export const Step=({type, number, insertStep, title, stepNumero, color, numeroStep})=>{
     return(
         <li className={`step-item is-pointer ${type}`} onClick={()=>{
-            if (number ===1) {
+            if (number<numeroStep) {
                 stepNumero(number)
             }
             
@@ -22,11 +22,11 @@ const Steps=({number, titles, numeroStep, ...rest})=>{
 
         for (let index = 0; index < number; index++) {
             if (index+1===numeroStep) {
-                render.push(<Step {...rest} key={index+1} number={index+1} type={'is-active'} title={titles[`title${index+1}`]}/>)
+                render.push(<Step {...rest} key={index+1} numeroStep={numeroStep} number={index+1} type={'is-active'} color={'has-background-success-market'} title={titles[`title${index+1}`]}/>)
             }else if (index+1<numeroStep){
-                render.push(<Step key={index+1} {...rest} number={index+1} type={'is-completed'} color={'has-background-success-market'} title={titles[`title${index+1}`]}/>)
+                render.push(<Step key={index+1} {...rest} numeroStep={numeroStep} number={index+1} type={'is-completed'} color={'has-background-success-market'} title={titles[`title${index+1}`]}/>)
             }else{
-                render.push(<Step number={index+1} key={index+1} {...rest} title={titles[`title${index+1}`]}/>)
+                render.push(<Step number={index+1} numeroStep={numeroStep} key={index+1} {...rest} title={titles[`title${index+1}`]}/>)
             }
         }
 

@@ -174,7 +174,11 @@ const AudienciaInfo = ({insertAudiencia, audiencia, insertStep}) =>{
                     </div>
                     <div className="column is-12">
                             <button className = "button is-fullwidth is-blue" onClick={(e)=>{
-                                if (validarEmpty(info)) {
+                                let exceptiones = []
+                                if (info.id_pais !== "95") {
+                                    exceptiones= ["id_estado_pais","id_municipio", "id_parroquia"]
+                                }
+                                if (validarEmpty(info, [...exceptiones])) {
                                     
                                     insertStep(4)
                                     insertAudiencia({

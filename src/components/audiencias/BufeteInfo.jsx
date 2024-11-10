@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { validateNumber } from "@/lib/helpers/validate/validateNumber";
+import { validarEmail } from "@/lib/helpers/validate/validateEmail";
 import { aloneLetter } from "@/lib/helpers/validate/validateForm";
 import { Alert } from 'antd';
 //Instancia de app de antd, para usar componentes si colocar manualmente la configuracion
@@ -112,10 +113,20 @@ const BufeteInfo = ({insertBufetes, bufetes, insertStep}) =>{
                     </div>
                     <div className="column is-12">
                         <button className = "button is-fullwidth is-blue" onClick={(e)=>{
+                        if (info.rif !== "" && info.rif !== null && info.nombre_bufete !== "" && info.correo !== "" && info.telefono !== null) {
+                            if (validateNumber(info.rif, 10, message, 6, "RIF") && validarEmail(info.correo, message) && validateNumber(info.telefono, 11, message, 6, "Teléfono")) {
+                                insertStep(3)
+                                insertBufetes({
+                                    ...info
+                                })
+                            }
+                        } else{
                             insertStep(3)
                             insertBufetes({
                                 ...info
                             })
+                        }
+                            
                         }}
                         >{info.rif === "" || info.rif === null || info.nombre_bufete === "" || info.correo === "" || info.telefono === null ?'Omitir':"Siguiente"}</button>
                     </div>
